@@ -5,7 +5,6 @@ public class ReadFileExample {
     public void readFileText(String filePath) {
         try {
             File file = new File(filePath);
-
             if (!file.exists()) {
                 throw new FileNotFoundException();
             }
@@ -20,7 +19,8 @@ public class ReadFileExample {
                 sum += line;
             }
             reader.close();
-
+            inputStreamReader.close();
+            fileInputStream.close();
             System.out.println("Tổng = " + sum);
         } catch (Exception e) {
             System.err.println("File không tồn tại or nội dung có lỗi!");

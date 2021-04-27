@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Scanner;
 
 public class ReadFileExample {
@@ -13,18 +10,20 @@ public class ReadFileExample {
                 throw new FileNotFoundException();
             }
 
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String line = "";
+            FileInputStream fileInputStream = new FileInputStream(file);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            int line;
             int sum = 0;
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.read()) != -1) {
                 System.out.println(line);
-                sum += Integer.parseInt(line);
+                sum += line;
             }
             reader.close();
 
             System.out.println("Tổng = " + sum);
         } catch (Exception e) {
-            System.err.println("Fie không tồn tại or nội dung có lỗi!");
+            System.err.println("File không tồn tại or nội dung có lỗi!");
         }
     }
 
